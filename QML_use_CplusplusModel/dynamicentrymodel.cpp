@@ -15,9 +15,21 @@ DynamicEntryModel::~DynamicEntryModel()
 
 }
 
+int DynamicEntryModel::rowCount(const QModelIndex &parent) const
+{
+//    Q_UNUSED(parent);
+    return m_data.count();
+}
+
 int DynamicEntryModel::count() const
 {
-    return m_data.count();
+
+    return rowCount(QModelIndex());
+}
+
+QHash<int, QByteArray> DynamicEntryModel::roleNames() const
+{
+    return m_roleNames;
 }
 
 QVariant DynamicEntryModel::data(const QModelIndex &index, int role) const
@@ -79,12 +91,18 @@ void DynamicEntryModel::remove(int index)
         return;
     }
     // view protocol (begin => mainpulate => end
-    emit beginInsertRows(QModelIndex(), index, index);
+    emit beginRemoveRows(QModelIndex(), index, index);
     m_data.removeAt(index);
-    emit endInsertRows();
+    emit endRemoveRows();
     // update our count property
     emit countChanged(m_data.count());
 }
+
+void DynamicEntryModel::clear()
+{
+
+}
+
 
 QColor DynamicEntryModel::get(int index)
 {
