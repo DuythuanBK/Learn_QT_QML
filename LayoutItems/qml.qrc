@@ -1,5 +1,12 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>BlueSquare.qml</file>
+        <file>BrightSquare.qml</file>
+        <file>DarkSquare.qml</file>
+        <file>EmptySquare.qml</file>
+        <file>GreenSquare.qml</file>
+        <file>RedSquare.qml</file>
+        <file>Square.qml</file>
     </qresource>
 </RCC>
